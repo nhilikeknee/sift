@@ -109,7 +109,7 @@ struct PopMenuButton<Label: View>: View {
             label().contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        .pointerStyle(.link)
+        .linkCursor()
         .background(PopMenuAnchorView(anchor: anchor))
         .help(hint)
         .accessibilityLabel(accessibilityLabel)

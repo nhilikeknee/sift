@@ -25,7 +25,7 @@ rotate, crop or delete each frame without reaching for the mouse.
 
 ## Install
 
-Requires macOS 15 or later, on Apple Silicon.
+Requires macOS 14 Sonoma or later, on Apple Silicon.
 
 [![Download Sift](https://img.shields.io/github/v/release/nhilikeknee/sift?style=for-the-badge&label=Download%20for%20macOS&color=24292f)](https://github.com/nhilikeknee/sift/releases/latest)
 
@@ -225,8 +225,8 @@ Where it sits on a crowded shelf:
   forgets the folder it came from; Finder's gallery shows the folder but cannot
   show a photo well.
 
-The requirements again, because they rule a lot of people out: macOS 15 or
-later and Apple Silicon. Download the `.dmg`, or build it from source.
+The requirements again, because they rule a lot of people out: macOS 14
+Sonoma or later and Apple Silicon. Download the `.dmg`, or build it from source.
 
 ## Upcoming features
 
@@ -271,7 +271,7 @@ Those take your photographs into a catalog or a library and develop them. Sift
 decides what to keep. See [what it replaces](#photo-culling-and-what-this-replaces).
 
 **Does it run on an Intel Mac?**
-No. macOS 15 or later on Apple Silicon.
+No. macOS 14 Sonoma or later on Apple Silicon.
 
 ## Contributing
 

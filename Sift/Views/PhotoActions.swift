@@ -63,7 +63,7 @@ struct GlyphButton<S: GlyphShape>: View {
         // the cursor to say so, and the arrow says nothing (D-137). Not while
         // disabled: a control at the end of its range stays in the row and
         // goes quiet, and a hand over it would promise something.
-        .pointerStyle(enabled ? .link : nil)
+        .linkCursor(enabled)
         .onHover { hovering = $0 }
         .animation(Tokens.Motion.fast, value: hovering)
         .animation(Tokens.Motion.fast, value: isOn)
@@ -123,7 +123,7 @@ struct WordButton: View {
                 .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        .pointerStyle(.link)
+        .linkCursor()
         .onHover { hovering = $0 }
         .animation(Tokens.Motion.fast, value: hovering)
         .help(hint)
@@ -197,7 +197,7 @@ struct FavoriteMarkButton: View {
                     .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
-            .pointerStyle(.link)
+            .linkCursor()
             .onHover { hovering = $0 }
             .animation(Tokens.Motion.fast, value: hovering)
             .animation(Tokens.Motion.fast, value: ref.favorite)
@@ -413,7 +413,7 @@ struct BoxedButton: View {
                 .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        .pointerStyle(.link)
+        .linkCursor()
         .disabled(!enabled)
         .onHover { hovering = $0 }
         .animation(Tokens.Motion.fast, value: hovering)

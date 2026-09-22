@@ -395,11 +395,15 @@ import Foundation
             let lines = file.text.split(separator: "\n", omittingEmptySubsequences: false).map(String.init)
             for (i, line) in lines.enumerated() where line.contains(".buttonStyle(.plain)") {
                 if line.contains(Self.marker) { continue }
-                // The modifier chain around it, not the whole file: a
-                // `.pointerStyle` on some other button in the same view is not
-                // this button's affordance.
+                // The modifier chain around it, not the whole file: a cursor
+                // on some other button in the same view is not this button's
+                // affordance.
+                //
+                // `.linkCursor()` and not `.pointerStyle(.link)`: the app says
+                // it one way now and that way works on macOS 14 as well, where
+                // `pointerStyle` does not exist (D-389).
                 let near = lines[max(0, i - 14)..<min(lines.count, i + 14)].joined(separator: "\n")
-                #expect(near.contains(".pointerStyle("),
+                #expect(near.contains(".linkCursor("),
                         "\(file.name):\(i + 1) is a plain button with no pointing hand")
             }
         }

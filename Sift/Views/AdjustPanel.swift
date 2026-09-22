@@ -168,7 +168,7 @@ struct AdjustPanel: View {
                         .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
-                .pointerStyle(.link)
+                .linkCursor()
                 .disabled(value == 0)
                 .help("\(knob.label) back to 0")
                 .accessibilityLabel("Reset \(knob.label.lowercased())")
@@ -219,7 +219,7 @@ private struct PillToggle: View {
                 .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        .pointerStyle(.link)
+        .linkCursor()
         .onHover { hovering = $0 }
         .animation(Tokens.Motion.fast, value: hovering)
         .help(hint)

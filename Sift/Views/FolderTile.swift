@@ -316,7 +316,7 @@ struct FolderTile: View {
                 }
             }
             .contentShape(RoundedRectangle(cornerRadius: Tokens.Radius.md))
-            .pointerStyle(.link)
+            .linkCursor()
         }
         .buttonStyle(.plain)
         .onHover { hovering = $0 }

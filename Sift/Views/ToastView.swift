@@ -33,14 +33,14 @@ struct ToastView: View {
                     .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
-                .pointerStyle(.link)
+                .linkCursor()
                 .textStyle(.strong)
                 .help(offer.ingests ? "Copy the photos off \(offer.folder.lastPathComponent)" : "Open \(offer.folder.path) (⌘⇧→)")
             }
             if toast.isError {
                 Button("Dismiss", action: dismiss)
                     .buttonStyle(.plain)
-                    .pointerStyle(.link)
+                    .linkCursor()
                     .textStyle(.strong)
                     .help("Dismiss")
             }

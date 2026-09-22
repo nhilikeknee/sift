@@ -362,7 +362,7 @@ private struct Row: View {
                     .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
-            .pointerStyle(.link)
+            .linkCursor()
             .disabled(!expandable)
             .accessibilityLabel(expanded ? "Collapse" : "Expand")
 
@@ -385,7 +385,7 @@ private struct Row: View {
                 .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
-            .pointerStyle(.link)
+            .linkCursor()
             // The count is drawn as a bare number beside the name, so without
             // this the row reads "Harbor Weekend 60" and the reader is left to
             // guess what sixty of (D-343).
@@ -577,7 +577,7 @@ struct SidebarDivider: View {
             .frame(width: Tokens.Border.hoverWidth)
             .frame(width: Tokens.Layout.dividerGrab)
             .contentShape(Rectangle())
-            .pointerStyle(.frameResize(position: .trailing))
+            .resizeCursor()
             .onHover { hovering = $0 }
             .animation(Tokens.Motion.fast, value: hovering)
             .gesture(

@@ -51,7 +51,7 @@ struct JumpSheet: View {
                     .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
-                .pointerStyle(.link)
+                .linkCursor()
                 .help(match.folder.path)
             }
         }

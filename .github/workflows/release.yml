@@ -55,7 +55,7 @@ jobs:
           DMG="build/Sift-$VERSION.dmg"
           SHA="$(shasum -a 256 "$DMG" | cut -d' ' -f1)"
           cat > notes.md <<EOF
-          Apple Silicon, macOS 15 or later.
+          Apple Silicon, macOS 14 Sonoma or later.
 
           ## The first open is refused
 

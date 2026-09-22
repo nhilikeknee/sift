@@ -60,7 +60,7 @@ struct RejectReview: View {
                 .padding(.vertical, Tokens.Space.s8)
                 .background(trashHovering ? .clear : Tokens.Surface.control,
                             in: RoundedRectangle(cornerRadius: Tokens.Radius.sm))
-                .pointerStyle(.link)
+                .linkCursor()
                 // Red as the pointer arrives, not at rest. The rule for a word
                 // in a column of paths is the other way round, and for the
                 // same reason it is the other way round here: that word is
@@ -153,7 +153,7 @@ private struct RejectCell: View {
                 .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        .pointerStyle(.link)
+        .linkCursor()
         .onHover { hovering = $0 }
         .animation(Tokens.Motion.fast, value: hovering)
         .help("\(ref.name) — click to clear the reject flag")

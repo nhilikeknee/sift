@@ -90,7 +90,7 @@ struct Filmstrip: View {
             .id(ref.id)
             .onGeometryChange(for: CGRect.self) { $0.frame(in: .named(Self.space)) } action: { frames[index] = $0 }
             .onHover { hovering = $0 ? index : (hovering == index ? nil : hovering) }
-            .pointerStyle(.link)
+            .linkCursor()
             .gesture(scrub())
             .contextMenu { PhotoMenu(ref: ref, store: store, router: router) }
             .help(ref.name)

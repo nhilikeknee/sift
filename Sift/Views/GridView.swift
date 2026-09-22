@@ -301,7 +301,7 @@ private struct SectionHeader: View {
                 Button { open(folder) } label: { label }
                     .buttonStyle(.plain)
                     .onHover { hovering = $0 }
-                    .pointerStyle(.link)
+                    .linkCursor()
                     .help("Open \(folder.path)")
             } else {
                 // A scene is a time, not a place. Nothing to open, so nothing
@@ -423,7 +423,7 @@ private struct GridCell: View {
         }
         // The pointer says what the fill only implies: this is a thing you
         // click, not a picture sitting on a page (D-75).
-        .pointerStyle(.link)
+        .linkCursor()
         .animation(Tokens.Motion.fast, value: hovering)
         .animation(Tokens.Motion.fast, value: isSelected)
         .animation(Tokens.Motion.fast, value: isCursor)
@@ -610,7 +610,7 @@ private struct StackBadge: View {
         .buttonStyle(.plain)
         .onHover { hovering = $0 }
         .animation(Tokens.Motion.fast, value: hovering)
-        .pointerStyle(.link)
+        .linkCursor()
         .help(open ? "Close this burst of \(count)" : "Show all \(count) frames of this burst")
         // How many frames is the badge's value and it changes as a burst is
         // culled; open and shut is the control's own state (D-343).

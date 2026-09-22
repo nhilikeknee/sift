@@ -1264,7 +1264,7 @@ struct SiftApp: App {
         // back blank, while the app already resumes `Preferences.lastFolder`
         // into the first window by itself. Owner's call, asked and answered:
         // one window on the last folder (D-361).
-        .restorationBehavior(.disabled)
+
         // A titled window, because a toolbar needs a title bar to live in
         // (D-208). It was `.hiddenTitleBar` for as long as the app drew its
         // own header; the title itself is hidden in `ToolbarConfigurator`,
@@ -1556,6 +1556,7 @@ struct SiftApp: App {
             PreviewWindow()
                 .environment(session.store)
                 .environment(session.router)
+                .withoutRestoration()
         }
         .defaultSize(width: 1100, height: 800)
         .keyboardShortcut("p", modifiers: [.command, .shift])
@@ -1565,7 +1566,7 @@ struct SiftApp: App {
         // already carried a comment about filming exactly that, and a
         // screenshot run inherited it from whichever scene last pressed `p`
         // (D-361).
-        .restorationBehavior(.disabled)
+
 
         // `⌘,` and `Sift > Settings…`. SwiftUI puts the menu item in for us,
         // which is what keeps the shortcut from being the only way in (D-42).

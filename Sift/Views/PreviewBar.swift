@@ -283,7 +283,7 @@ private struct BarIcon<S: GlyphShape>: View {
                 .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        .pointerStyle(.link)
+        .linkCursor()
         .onHover { hovering = $0 }
         .animation(Tokens.Motion.fast, value: hovering)
         .animation(Tokens.Motion.fast, value: isOn)

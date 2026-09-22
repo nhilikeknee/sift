@@ -345,7 +345,7 @@ private struct Crumb: View {
                 .controlFill(hovering: hovering, on: targeted)
         }
         .buttonStyle(.plain)
-        .pointerStyle(.link)
+        .linkCursor()
         .onHover { hovering = $0 }
         .help("Open \(seg.url.path)")
         // Photographs only. A folder dropped on a crumb is a move nobody meant

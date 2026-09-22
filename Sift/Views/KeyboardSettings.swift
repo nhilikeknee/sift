@@ -130,7 +130,7 @@ struct KeyboardSettings: View {
                 }
         }
         .buttonStyle(.plain)
-        .pointerStyle(.link)
+        .linkCursor()
         .help(recording ? "Press the key you want, or Esc to leave it alone"
                         : "Change the key for \(command.label)")
         .accessibilityLabel(recording ? "Press the key for \(command.label)"

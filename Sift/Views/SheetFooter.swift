@@ -49,7 +49,7 @@ struct SheetFooter<Destructive: View, Actions: View>: View {
         // hand means a link and a button keeps the arrow; the decision is
         // consistency inside one app over consistency with the platform, and
         // it was already made thirty-one times before this line (D-357).
-        .pointerStyle(.link)
+        .linkCursor()
     }
 }
 

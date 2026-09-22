@@ -25,7 +25,7 @@ struct ProgressBanner: View {
                     Spacer(minLength: Tokens.Space.s16)
                     Button("Stop", action: stop)
                         .buttonStyle(.plain)
-                        .pointerStyle(.link)
+                        .linkCursor()
                         .textStyle(.strong)
                         .help("Stop (Esc)")
                 }

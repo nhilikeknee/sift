@@ -676,7 +676,7 @@ private struct ZoomTag: View {
                 .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        .pointerStyle(.link)
+        .linkCursor()
         .onHover { hovering = $0 }
         .animation(Tokens.Motion.fast, value: hovering)
         .help(hint)

@@ -123,7 +123,8 @@ struct RootView: View {
         // and the folder name in both places is the second readout for one
         // fact that D-202 spent a session taking out (D-208).
         .navigationTitle(store.folder?.lastPathComponent ?? "Sift")
-        .toolbar(removing: .title)
+        .plainWindowChrome()
+        .withoutRestoration()
         .sheet(isPresented: $store.showTrashPanel) { TrashPanel() }
         .sheet(isPresented: $store.goToPath) { GoToPathSheet { router.openPath($0) } }
         .sheet(isPresented: $store.jumping) {

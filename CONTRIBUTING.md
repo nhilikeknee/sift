@@ -13,8 +13,9 @@ cd sift && make test
 
 `make run` builds the app and opens it.
 
-CI runs `swift build --build-tests` and `swift test` on macOS 15 for every push
-and pull request.
+CI runs `swift build --build-tests` and `swift test` on macOS 14 and macOS 15
+for every push and pull request. The app's floor is 14, and the two runners are
+the only thing that proves it: nothing on the author's machine runs Sonoma.
 
 ## Commands
 

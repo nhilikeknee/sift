@@ -30,7 +30,7 @@ struct TrashPanel: View {
                                 } else {
                                     Button("Restore") { router.restoreFromTrash(entry) }
                                         .buttonStyle(.plain)
-                                        .pointerStyle(.link)
+                                        .linkCursor()
                                         .textStyle(.strong)
                                 }
                             }
@@ -44,7 +44,7 @@ struct TrashPanel: View {
                 if pending.count > 1 {
                     Button("Restore All") { for e in pending { router.restoreFromTrash(e) } }
                         .buttonStyle(.plain)
-                        .pointerStyle(.link)
+                        .linkCursor()
                         .textStyle(.readout)
                 }
                 Spacer()

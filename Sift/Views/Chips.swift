@@ -19,7 +19,7 @@ struct Chip: View {
             if let act {
                 Button(action: act) { paddedLabel }
                     .buttonStyle(.plain)
-                    .pointerStyle(.link)
+                    .linkCursor()
                     .help(hint)
             } else {
                 paddedLabel.help(hint)

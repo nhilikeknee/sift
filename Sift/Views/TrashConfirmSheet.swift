@@ -60,7 +60,7 @@ struct TrashConfirmSheet: View {
             // keeps its own layout rather than using `SheetFooter` — a
             // confirmation is two answers to one question, not a rank of
             // actions (D-355) — so it has to say this for itself (D-359).
-            .pointerStyle(.link)
+            .linkCursor()
             .padding(.top, Tokens.Space.s8)
         }
         .padding(Tokens.Space.s24)

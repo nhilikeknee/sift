@@ -31,8 +31,15 @@ permissions:
 
 jobs:
   test:
-    name: Build and test
-    runs-on: macos-15
+    # Both ends of the supported range. The app's floor is macOS 14 and the
+    # author's machine runs 15, so the 14 runner is the only thing that proves
+    # a Sonoma build still compiles and passes (D-389).
+    name: Build and test on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-14, macos-15]
     timeout-minutes: 20
 
     steps:

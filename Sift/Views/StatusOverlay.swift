@@ -103,7 +103,7 @@ struct StatusOverlay: View {
                 .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
-            .pointerStyle(.link)
+            .linkCursor()
             // The leading inset is the stack's, not this button's (D-280). The
             // 32 off the bottom is still here, because the toast brings its own
             // and these two are what have to agree.

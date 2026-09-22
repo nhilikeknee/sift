@@ -1674,7 +1674,9 @@ import SwiftUI
                 // To the next type declaration, or the end of the file.
                 let rest = text[start.upperBound...]
                 let end = rest.range(of: "\nstruct ")?.lowerBound ?? rest.endIndex
-                #expect(rest[..<end].contains("pointerStyle"), """
+                // `linkCursor`, which is `pointerStyle` on 15 and a cursor
+                // rect on 14, so the rule holds on both (D-389).
+                #expect(rest[..<end].contains("linkCursor"), """
                     `\(name)` does not change the pointer, so a reader crosses it \
                     without being told it can be pressed.
                     """)

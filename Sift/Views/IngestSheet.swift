@@ -67,7 +67,7 @@ struct IngestSheet: View {
                         .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
-                .pointerStyle(.link)
+                .linkCursor()
                 .foregroundStyle(Tokens.Text.primary)
                 .disabled(destination == nil || found == 0 || refusal != nil)
                 .help("Copy every photo on the card into the folder above")

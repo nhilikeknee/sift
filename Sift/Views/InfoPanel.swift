@@ -196,7 +196,7 @@ private struct FaceCrop: View {
         }
         .buttonStyle(.plain)
         .onHover { hovering = $0 }
-        .pointerStyle(.link)
+        .linkCursor()
         .help(face.eyesClosed == true ? "Eyes look closed. Click to see it up close" : "Click to see this face up close")
         .accessibilityLabel("Face")
         .accessibilityValue(face.eyesClosed == true ? "eyes look closed" : "")

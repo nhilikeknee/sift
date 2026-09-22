@@ -64,7 +64,7 @@ struct CommandPalette: View {
                     row(command, highlighted: i == selection)
                 }
                 .buttonStyle(.plain)
-                .pointerStyle(.link)
+                .linkCursor()
                 .help(command.label)
             }
         }
