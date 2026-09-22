@@ -4,7 +4,7 @@ import SwiftUI
 struct RootView: View {
     /// The gallery's own coordinate space, shared by the grid cells and the
     /// peek that is drawn beside one of them.
-    static let gallerySpace = "gallery"
+    nonisolated static let gallerySpace = "gallery"
 
     @Environment(LibraryStore.self) private var store
     @Environment(CommandRouter.self) private var router

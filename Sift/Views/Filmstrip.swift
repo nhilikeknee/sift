@@ -18,7 +18,10 @@ struct Filmstrip: View {
     @State private var hovering: Int?
     @State private var scrubbing = false
 
-    private static let space = "filmstrip"
+    // `nonisolated` because an `onGeometryChange` transform is a Sendable
+    // closure, and Swift 6.1 will not let one read a main-actor static. An
+    // immutable String is safe anywhere (D-387).
+    nonisolated private static let space = "filmstrip"
 
     var body: some View {
         ScrollViewReader { proxy in

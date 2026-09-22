@@ -8,7 +8,7 @@ struct GridView: View {
     /// Scroll target for the folder row, which has no photo id of its own.
     private static let folderRowID = "folder-row"
     /// The coordinate space the cell frames and the rubber band share.
-    private static let space = "grid"
+    nonisolated private static let space = "grid"
 
     /// Where every cell is, so a drag across the canvas knows what it crossed
     /// and so a drag that starts on a photo is left alone (D-92).

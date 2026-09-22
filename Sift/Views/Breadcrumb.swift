@@ -41,7 +41,7 @@ struct Breadcrumb: View {
     /// function a test can ask (D-324).
     static func pathSegments(for url: URL?,
                              home: URL = FileManager.default.homeDirectoryForCurrentUser,
-                             reachable: (URL) -> Bool = FolderAccess.isReachable) -> [Segment] {
+                             reachable: @MainActor (URL) -> Bool = FolderAccess.isReachable) -> [Segment] {
         guard let url else { return [] }
         var urls: [URL] = []
         var u = url.standardizedFileURL
@@ -73,7 +73,7 @@ struct Breadcrumb: View {
         //
         // A grant covers what is under it, so reachability only ever turns on
         // as the path goes down and the first hit is the right place to cut.
-        if let start = urls.firstIndex(where: reachable) {
+        if let start = urls.firstIndex(where: { reachable($0) }) {
             urls.removeFirst(start)
         }
 
