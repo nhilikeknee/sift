@@ -631,4 +631,71 @@ import UniformTypeIdentifiers
             """)
     }
 
+    /// SECURITY.md's *three entitlements and no others* is read off the file.
+    ///
+    /// The sentence was measured once and nothing re-measured it: a fourth
+    /// entitlement would have made it false with the suite green, which is
+    /// the one failure a security document cannot have. So the count and the
+    /// three names come out of `Resources/Sift.entitlements` and the document
+    /// is checked against them, rather than the other way round.
+    ///
+    /// It also holds the second half of D-390. `bundle.sh` had read the
+    /// sandbox back since D-324 and `dmg.sh` re-signs after stamping the
+    /// version, so the check that ran was not the one covering the download,
+    /// and `v0.1.0` shipped with no entitlements at all. Both readbacks are
+    /// required here, by the command that performs them.
+    @Test func theDocumentNamesEveryEntitlementTheAppAsksFor() throws {
+        let data = try Data(contentsOf: Repo.at("Resources/Sift.entitlements"))
+        let plist = try PropertyListSerialization
+            .propertyList(from: data, format: nil) as? [String: Any]
+        let keys = Set(try #require(plist).keys)
+
+        // The section, not the file. `scripts/dmg.sh` is named again 100 lines
+        // down, under how the download is built, and a scan of the whole
+        // document passed on that mention while the paragraph this test is
+        // about had stopped naming it. Found by proving the rule failing.
+        let whole = try Repo.text("SECURITY.md")
+        let heading = "## What the app can reach"
+        let after = try #require(whole.range(of: heading)).upperBound
+        let rest = whole[after...]
+        let security = String(rest[..<(rest.range(of: "\n## ")?.lowerBound ?? rest.endIndex)])
+
+        // Spelled, because that is how the sentence spells it. A count this
+        // document states in digits would read as a version number.
+        let words = [1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six"]
+        let counted = words[keys.count] ?? "\(keys.count)"
+        // Bound first, so a failure reports a Bool and not the whole
+        // section. The sentence below is the part worth reading.
+        let states = security.contains("\(counted) entitlements and no others")
+        #expect(states, """
+            Resources/Sift.entitlements holds \(keys.count) entitlements \
+            and SECURITY.md does not say \(counted). Adding one is a \
+            decision written down first, in the pull request that asks for it \
+            and then under *What the app can reach*, where this test reads it back.
+            """)
+
+        // The last component, because the document shortens two of the three
+        // and writing `com.apple.security.` out in full three times says
+        // nothing a reader needs.
+        for key in keys.sorted() {
+            let short = key.replacingOccurrences(of: "com.apple.security.", with: "")
+            let named = security.contains(key) || security.contains(short)
+            #expect(named, "SECURITY.md names no entitlement matching \(key)")
+        }
+
+        // The readback each script performs, by the command rather than by the
+        // message: a script that kept the `echo` and lost the `plutil` would
+        // still fail a scan for its own words.
+        let readback = "plutil -extract 'com\\.apple\\.security\\.app-sandbox' raw -"
+        for script in ["scripts/bundle.sh", "scripts/dmg.sh"] {
+            #expect(try Repo.text(script).contains(readback), """
+                \(script) signs the app and does not read the sandbox back \
+                off it. That is D-390: the check that ran was not the one \
+                covering the download, and v0.1.0 shipped with no entitlements.
+                """)
+            #expect(security.contains(script),
+                    "SECURITY.md does not name \(script) as a script that checks")
+        }
+    }
+
 }

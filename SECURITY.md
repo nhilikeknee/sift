@@ -19,10 +19,13 @@ going to happen.
 
 Sift runs in the App Sandbox, with three entitlements and no others:
 `com.apple.security.app-sandbox`, `files.user-selected.read-write` and
-`bookmarks.app-scope`. They are in `Resources/Sift.entitlements`, and
-`scripts/bundle.sh` reads the sandbox back off the signed bundle and fails the
-build if it is not there. A fourth entitlement would be a decision written down
-first.
+`files.bookmarks.app-scope`. They are in `Resources/Sift.entitlements`. Both
+scripts that sign the app read the sandbox back off the signed bundle and fail
+if it is missing: `scripts/bundle.sh` for a local build, and `scripts/dmg.sh`,
+which re-signs after stamping the version and is what builds the download. Only
+the first of those checked until 2026-09-22, which is how `v0.1.0` shipped an
+app with no entitlements at all. A fourth entitlement would be a decision
+written down first.
 
 So the app starts with no reach at all. It reads a folder only after somebody
 hands it one, through one of three doors: the open panel, a drop on the window,
