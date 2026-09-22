@@ -40,7 +40,22 @@ APP="$STAGE/Sift.app"
 /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $VERSION" "$APP/Contents/Info.plist"
 # `--options runtime` for the reason bundle.sh gives, and it matters more here:
 # this is the copy that reaches somebody who did not build it (D-267).
-codesign --force --sign - --options runtime "$APP"
+#
+# `--entitlements` is not optional and its absence is invisible. `--force`
+# replaces the signature bundle.sh made rather than adding to it, so a re-sign
+# without this line drops the sandbox and nothing says so: v0.1.0 shipped that
+# way, verified in bundle.sh and then unverified here, and the app everybody
+# downloaded held the powers of their account while the README said it held
+# none (S-42).
+codesign --force --sign - --options runtime \
+    --entitlements Resources/Sift.entitlements "$APP"
+
+# Read back off the bundle that is about to go into the image, not off an
+# earlier one. bundle.sh makes the same check and it was the right check in the
+# wrong place: what it verified was not what shipped.
+codesign -d --entitlements - --xml "$APP" 2>/dev/null \
+    | plutil -extract 'com\.apple\.security\.app-sandbox' raw - >/dev/null \
+    || { echo "dmg.sh: the app in the image is not sandboxed" >&2; exit 1; }
 
 # The Applications symlink is what makes the window a drag target. Without it
 # the reader is looking at an app they are expected to run from a disk image,
