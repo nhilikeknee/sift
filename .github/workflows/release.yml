@@ -57,23 +57,17 @@ jobs:
           cat > notes.md <<EOF
           Apple Silicon, macOS 14 Sonoma or later.
 
-          ## The first open is refused
+          ## Opening it the first time
 
-          Sift is signed, but not by a paid Apple developer account, so macOS
-          will not take its word for it. Download the disk image, drag Sift to
-          Applications, and the first time you open it macOS says it cannot
-          check the app for malware.
+          Drag Sift to Applications and double-click it. macOS alerts once that it cannot
+          check the app for malware: Sift is signed, but not by a paid Apple developer
+          account (notarization costs \$99 a year and the developer of this project is
+          not paying that). Dismiss the alert, open **System Settings > Privacy &
+          Security**, scroll to the bottom, and press **Open Anyway** on the line naming
+          Sift. The button only appears after that first alert. You are asked once.
 
-          To let it through: open **System Settings > Privacy & Security**,
-          scroll to the bottom, and press **Open Anyway** beside the line about
-          Sift. That button only appears once macOS has refused the app, so
-          double-click Sift first, dismiss the dialog, then go and look. You
-          are asked once.
-
-          This is what an unnotarized build looks like, and notarization costs
-          \$99 a year that this project does not spend. If you would rather not
-          click past a malware warning, build from source instead: the README
-          has the two commands.
+          After that, open Sift from Applications, Launchpad or Spotlight. The copy
+          inside the disk image asks for permission again every time.
 
           ## Checking the download
 
@@ -81,8 +75,7 @@ jobs:
           $SHA
           \`\`\`
 
-          Compare it with \`shasum -a 256 Sift-$VERSION.dmg\`. The build log for
-          this release shows what went into it.
+          Compare with \`shasum -a 256 Sift-$VERSION.dmg\`.
           EOF
           gh release create "$GITHUB_REF_NAME" "$DMG" \
             --title "Sift $VERSION" \

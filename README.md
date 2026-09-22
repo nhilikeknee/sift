@@ -46,6 +46,9 @@ paying for that). Letting it through takes three steps, once:
 
 Done!
 
+After that, open Sift from Applications, Launchpad or Spotlight. The copy
+inside the disk image asks for permission again every time.
+
 If clicking past a malware warning is not something you want to do, build it
 from source instead.
 
