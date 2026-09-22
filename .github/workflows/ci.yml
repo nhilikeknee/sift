@@ -54,6 +54,13 @@ jobs:
       # what says so.
       - name: Toolchain
         run: |
+          # The macos-14 image still defaults to Xcode 15, whose Swift is 5.10,
+          # and this package declares tools 6.0: the job failed before it
+          # compiled a line. Take the newest Xcode the image carries rather
+          # than naming a version that vanishes when the image moves, and
+          # print what was picked, which is the whole point of this step.
+          newest="$(ls -d /Applications/Xcode_1[6-9]*.app 2>/dev/null | sort -V | tail -1)"
+          if [ -n "$newest" ]; then sudo xcode-select -s "$newest"; fi
           xcodebuild -version
           swift --version
 
