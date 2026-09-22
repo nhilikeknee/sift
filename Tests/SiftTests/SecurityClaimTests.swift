@@ -606,6 +606,7 @@ import UniformTypeIdentifiers
             ("Tests/SiftTests/SandboxTests.swift", "every folder is reachable and nothing is refused"),
             // The build failure when the signed bundle comes back without it.
             ("scripts/bundle.sh", "the signed app is not sandboxed"),  // sandbox-claim:allow
+            ("scripts/dmg.sh", "the app in the image is not sandboxed"),  // sandbox-claim:allow
         ]
         var offenders: [String] = []
         for file in try publishedFiles() {
