@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- The whole point of D-324. Without this line the other two do nothing
+	     and the app reads the account's entire home directory. -->
+	<key>com.apple.security.app-sandbox</key>
+	<true/>
+	<!-- Read and write, because culling moves files, writes XMP sidecars and
+	     saves crops beside the original. A read-only grant would make the app
+	     a viewer. -->
+	<key>com.apple.security.files.user-selected.read-write</key>
+	<true/>
+	<!-- What makes a grant outlive the launch that made it. Without it Sift
+	     would ask for every folder again on every open, which is the version
+	     of this nobody would keep. -->
+	<key>com.apple.security.files.bookmarks.app-scope</key>
+	<true/>
+</dict>
+</plist>

@@ -1,0 +1,57 @@
+# Build and test on every push and pull request.
+#
+# `swift test` rather than `make test`, which is the same command: a workflow
+# that reads the Makefile would report a green build for a Makefile that had
+# quietly stopped running the suite.
+#
+# The suite needs nothing but the toolchain. It writes into its own temporary
+# directories, points `Preferences` at a scratch domain, and skips the checks
+# that read the design document, which lives on the author's machine and not in
+# this repository. Nothing here opens a window: the checks that do need a
+# machine somebody is logged into, and they run on the author's.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# A second push to the same branch cancels the run the first one started.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+# Read-only, said out loud rather than left to the repository's default, which
+# is invisible from a checkout and is write on a repository whose default was
+# never changed. This job builds and tests and writes nothing, and it runs on
+# every pull request, which D-261 already called the wider of the two doors
+# (D-267).
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Build and test
+    runs-on: macos-15
+    timeout-minutes: 20
+
+    steps:
+      # Pinned to a commit rather than to a tag, for the reason the release
+      # workflow gives: a tag is a pointer somebody else can move. This job
+      # only reads, but it runs on every pull request, which is the wider
+      # door of the two (D-261).
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # Swift 6 language mode, so the toolchain has to be Xcode 16 or later.
+      # Printed rather than assumed: when a runner image moves, this line is
+      # what says so.
+      - name: Toolchain
+        run: |
+          xcodebuild -version
+          swift --version
+
+      - name: Build
+        run: swift build --build-tests
+
+      - name: Test
+        run: swift test

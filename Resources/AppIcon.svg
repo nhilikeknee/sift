@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img">
+  <title>Sift</title>
+  <desc>Three stacked photo frames in blue, yellow and red on an off-white rounded square.</desc>
+  <rect x="100" y="100" width="824" height="824" rx="185" fill="#F5F5F5"/>
+  <g>
+    <rect x="218" y="250" width="381" height="319" rx="31" fill="#1B5FA8"/>
+    <rect x="321" y="353" width="381" height="319" rx="31" fill="#F2B705"/>
+    <rect x="424" y="456" width="381" height="319" rx="31" fill="#D7263D"/>
+  </g>
+</svg>

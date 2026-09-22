@@ -1,0 +1,19 @@
+# Something has to pull the pin out again.
+#
+# D-261 pinned `actions/checkout` to a commit rather than to `v4`, because a tag
+# is a pointer its owner can move and the release job holds `contents: write`
+# over what people download. That closed one door and quietly opened another: a
+# commit nobody can move is also a commit nobody updates, so the workflows were
+# frozen on July 2026's checkout with a comment claiming Dependabot would bump
+# it and no Dependabot configured to do so (D-268).
+#
+# Monthly, not weekly. Two workflows use one action between them, and a pull
+# request nobody reads is worse than one that arrives less often.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: CI

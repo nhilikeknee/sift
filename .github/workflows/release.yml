@@ -1,0 +1,89 @@
+# Build the download and attach it to a release (D-247).
+#
+# Pushing a tag like v0.1.0 is the whole ritual. The version the bundle reports
+# comes off that tag rather than out of Info.plist, so a release and its About
+# box cannot disagree.
+#
+# It runs here rather than on the author's machine so the log says what went
+# into the binary. That matters more than usual: the app is ad-hoc signed and
+# never notarized, so a reader has nothing from Apple saying where it came
+# from. A public build log and a checksum in the release notes are the whole of
+# what is on offer instead.
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+# gh release create writes to the repository.
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build and publish the disk image
+    runs-on: macos-15
+    timeout-minutes: 30
+
+    steps:
+      # Pinned to a commit, not to a tag. A tag is a moving pointer the action's
+      # owner can repoint, and this job holds `contents: write` on a repository
+      # whose releases people download. The cost is that somebody has to bump
+      # it, by hand or by Dependabot; the alternative is trusting a name that
+      # someone else can repoint (D-261).
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Toolchain
+        run: swift --version
+
+      # A tag that fails the suite should not become a download. This is the
+      # same command CI runs on every push; running it again here is cheap
+      # next to publishing a broken build under a version number.
+      - name: Test
+        run: swift test
+
+      - name: Build the disk image
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+          make dmg VERSION="$VERSION"
+
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          DMG="build/Sift-$VERSION.dmg"
+          SHA="$(shasum -a 256 "$DMG" | cut -d' ' -f1)"
+          cat > notes.md <<EOF
+          Apple Silicon, macOS 15 or later.
+
+          ## The first open is refused
+
+          Sift is signed, but not by a paid Apple developer account, so macOS
+          will not take its word for it. Download the disk image, drag Sift to
+          Applications, and the first time you open it macOS says it cannot
+          check the app for malware.
+
+          To let it through: open **System Settings > Privacy & Security**,
+          scroll to the bottom, and press **Open Anyway** beside the line about
+          Sift. That button only appears once macOS has refused the app, so
+          double-click Sift first, dismiss the dialog, then go and look. You
+          are asked once.
+
+          This is what an unnotarized build looks like, and notarization costs
+          \$99 a year that this project does not spend. If you would rather not
+          click past a malware warning, build from source instead: the README
+          has the two commands.
+
+          ## Checking the download
+
+          \`\`\`
+          $SHA
+          \`\`\`
+
+          Compare it with \`shasum -a 256 Sift-$VERSION.dmg\`. The build log for
+          this release shows what went into it.
+          EOF
+          gh release create "$GITHUB_REF_NAME" "$DMG" \
+            --title "Sift $VERSION" \
+            --notes-file notes.md

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleExecutable</key><string>Sift</string>
+    <key>CFBundleIdentifier</key><string>io.github.nhilikeknee.sift</string>
+    <key>CFBundleIconFile</key><string>AppIcon</string>
+    <key>CFBundleName</key><string>Sift</string>
+    <key>CFBundleDisplayName</key><string>Sift</string>
+    <key>CFBundlePackageType</key><string>APPL</string>
+    <key>CFBundleShortVersionString</key><string>0.1.0</string>
+    <key>CFBundleVersion</key><string>0.1.0</string>
+    <key>LSMinimumSystemVersion</key><string>15.0</string>
+    <key>LSApplicationCategoryType</key><string>public.app-category.photography</string>
+    <key>NSHumanReadableCopyright</key><string>Copyright © 2026 Nhi Nguyen. MIT licensed.</string>
+    <key>NSHighResolutionCapable</key><true/>
+    <!-- Five strings for the five prompts macOS can raise before a first
+         read. The app runs in the App Sandbox (D-324), so a folder handed over
+         through the open panel, a drop, or the Finder is granted by the sandbox
+         and raises none of them. Whether any of the five still fires behind the
+         fence has not been measured. They stay until it is: a prompt with no
+         reason in it is a poor thing to put in front of someone who has just
+         clicked past a malware warning (D-260), and an unused string costs
+         nothing. -->
+    <key>NSDesktopFolderUsageDescription</key><string>Sift opens photographs wherever you keep them, including the Desktop.</string>
+    <key>NSDocumentsFolderUsageDescription</key><string>Sift opens photographs wherever you keep them, including Documents.</string>
+    <key>NSDownloadsFolderUsageDescription</key><string>Sift opens photographs wherever you keep them, including Downloads.</string>
+    <key>NSNetworkVolumesUsageDescription</key><string>Sift opens photographs on a network drive, which is the fifth place a shoot lands.</string>
+    <key>NSRemovableVolumesUsageDescription</key><string>Sift reads photographs straight off a card reader or an external drive.</string>
+    <key>NSPrincipalClass</key><string>NSApplication</string>
+    <key>CFBundleDocumentTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleTypeName</key><string>Image</string>
+            <key>CFBundleTypeRole</key><string>Viewer</string>
+            <key>LSHandlerRank</key><string>Alternate</string>
+            <key>LSItemContentTypes</key>
+            <array>
+                <string>public.image</string>
+                <string>public.folder</string>
+            </array>
+        </dict>
+    </array>
+</dict>
+</plist>

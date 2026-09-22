@@ -1,0 +1,34 @@
+name: Feature
+description: Something the app should do and does not
+labels: [feature]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Sift culls a folder of photographs. It is not going to become a library
+        manager, a catalog or a RAW developer, so a request in that direction
+        will get an honest no rather than a maybe.
+
+  - type: textarea
+    id: job
+    attributes:
+      label: What are you trying to do
+      description: The job, not the feature. What are you in the middle of when this comes up?
+      placeholder: |
+        Culling a wedding, and I want every frame I keep sent to one folder as I go.
+    validations:
+      required: true
+
+  - type: textarea
+    id: today
+    attributes:
+      label: What do you do today
+      description: In Sift, or in whatever you use instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: shape
+    attributes:
+      label: What you think it should look like
+      description: Optional. A key, a control, a panel, whatever you had in mind.

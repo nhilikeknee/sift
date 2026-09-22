@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 200" width="420" height="200" role="img" aria-label="Sift's icon dragged onto the Applications folder">
+  <title>Installing Sift</title>
+  <style>
+    :root {
+      --window: #F2F2F2; --line: #000000; --lit: #E5E5E5;
+      --folder: #9A9A9A; --text: #5C5C5C; --ghost: #CFCFCF;
+      --pointer: #1D1D1D; --pointer-edge: #FFFFFF;
+      --line-op: 0.08; --dot-op: 0.13;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --window: #383838; --line: #FFFFFF; --lit: #4A4A4A;
+        --folder: #9A9A9A; --text: #A8A8A8; --ghost: #4A4A4A;
+        --pointer: #F0F0F0; --pointer-edge: #1D1D1D;
+        --line-op: 0.08; --dot-op: 0.13;
+      }
+    }
+    .caption { font: 12px -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; fill: var(--text) }
+    .lit { animation: lit 4.6s linear infinite }
+    .ghost { animation: ghost 4.6s linear infinite }
+    .carried { animation: carried 4.6s linear infinite, drag 4.6s linear infinite }
+    .name { animation: name 4.6s linear infinite }
+    @keyframes lit{0%{opacity:0.0}46%{opacity:0.0}52%{opacity:1.0}80%{opacity:1.0}88%{opacity:0.0}100%{opacity:0.0}}
+    @keyframes ghost{0%{opacity:0.0}16%{opacity:0.0}22%{opacity:0.28}52%{opacity:0.28}60%{opacity:0.0}100%{opacity:0.0}}
+    @keyframes carried{0%{opacity:1.0}50%{opacity:1.0}60%{opacity:0.0}99.5%{opacity:0.0}100%{opacity:1.0}}
+    @keyframes name{0%{opacity:1.0}16%{opacity:1.0}22%{opacity:0.28}52%{opacity:0.28}60%{opacity:0.0}99.5%{opacity:0.0}100%{opacity:1.0}}
+    @keyframes drag {
+      0%, 16% { transform: translateX(0); animation-timing-function: cubic-bezier(0.2,0.7,0.3,1.0) }
+      50%, 99.5% { transform: translateX(196.0px) }
+      100% { transform: translateX(0) }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .lit { animation: none; opacity: 1 }
+      .ghost { animation: none; opacity: 0 }
+      .carried { animation: none; opacity: 1; transform: translateX(196.0px) }
+      .name { animation: none; opacity: 0 }
+    }
+  </style>
+  <rect x="10.0" y="10.0" width="400.0" height="180.0" rx="8.0" fill="var(--window)" stroke="var(--line)" stroke-opacity="var(--line-op)"/>
+  <path d="M10.0 46.0 H410.0" stroke="var(--line)" stroke-opacity="var(--line-op)"/>
+  <circle cx="30.0" cy="28" r="5" fill="var(--line)" fill-opacity="var(--dot-op)"/>
+      <circle cx="48.0" cy="28" r="5" fill="var(--line)" fill-opacity="var(--dot-op)"/>
+      <circle cx="66.0" cy="28" r="5" fill="var(--line)" fill-opacity="var(--dot-op)"/>
+  <rect class="lit" x="252.0" y="62.0" width="96.0" height="104.0" rx="8.0" fill="var(--lit)"/>
+  <g fill="var(--folder)">
+    <rect x="268.0" y="78.0" width="30" height="16" rx="4"/>
+    <rect x="268.0" y="84.0" width="64" height="47" rx="4"/>
+  </g>
+  <text class="caption" x="300.0" y="152.0" text-anchor="middle">Applications</text>
+  <text class="caption name" x="108.0" y="152.0" text-anchor="middle">Sift</text>
+  <g class="ghost" transform="translate(76.0,74.0)">
+    <rect x="6.25" y="6.25" width="51.5" height="51.5" rx="11.5625" fill="var(--ghost)"/>
+  </g>
+  <g class="carried">
+    <g transform="translate(76.0,74.0)">
+      <rect x="6.25" y="6.25" width="51.5" height="51.5" rx="11.5625" fill="#F5F5F5"/>
+      <rect x="13.625" y="15.625" width="23.8125" height="19.9375" rx="1.9375" fill="#1B5FA8"/>
+      <rect x="20.0625" y="22.0625" width="23.8125" height="19.9375" rx="1.9375" fill="#F2B705"/>
+      <rect x="26.5" y="28.5" width="23.8125" height="19.9375" rx="1.9375" fill="#D7263D"/>
+    </g>
+    <polygon points="0.0,0.0 0.0,18.0 4.2,13.8 7.6,21.2 10.0,20.2 6.6,12.9 12.2,12.9" fill="var(--pointer)" stroke="var(--pointer-edge)" stroke-width="1.4" stroke-linejoin="round" transform="translate(110.0,112.0)"/>
+  </g>
+</svg>

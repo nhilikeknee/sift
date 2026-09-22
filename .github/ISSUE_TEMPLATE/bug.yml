@@ -1,0 +1,58 @@
+name: Bug
+description: Something the app did that it should not have
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what you expected, and what you got instead.
+      placeholder: |
+        Cropped a photo, pressed Save changes, and the flag on it was gone afterwards.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: The steps
+      description: Enough to get there from a fresh launch, in order.
+      placeholder: |
+        1. Open a folder of JPEGs
+        2. Press Return, then c
+        3. Drag a box and press Shift-Return
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Which version
+      description: >-
+        The number in **Sift > About Sift**. If you built it yourself, add
+        `git rev-parse --short HEAD` after it.
+      placeholder: 0.1.0
+    validations:
+      required: true
+
+  - type: input
+    id: mac
+    attributes:
+      label: Which Mac
+      description: macOS version and chip.
+      placeholder: macOS 15.2, M2
+    validations:
+      required: true
+
+  - type: input
+    id: files
+    attributes:
+      label: What kind of files
+      description: Format, roughly how many in the folder, and where they live.
+      placeholder: 800 JPEGs out of a Fuji, on an external SSD
+
+  - type: textarea
+    id: anything
+    attributes:
+      label: Anything else
+      description: A screenshot if it is visual. Console output if the app said something.
